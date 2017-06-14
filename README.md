@@ -21,5 +21,13 @@ This boilerplate is for people who want write code using all ES6 features ( and 
 - `npm run prepublish` - Hook for npm. Do all the checks before publishing you module.
 
 # Installation
-Just clone this repo and remove `.git` folder.
+Follow the steps below:
+1. Clone this repo and remove `.git` folder.
+2. Edit the package.json file and replace all the '...' by the name of your package.
+3. npm install -g npm-check-updates
+4. run "ncu" from the root directory of your folder and update the necessary packages. Test that all the commands in the readme still work as expected.
+5. Update the README.md and CONTRIBUTING.md files as you want.
+6. Create a new project in git.yotako.io under the 'yotako' group.
+7. Follow the gitlab instructions to add files to the new repository from an existant folder (git init, git add origin ..., git add ., git commit..."
 
+You are ready to go. You can npm link this package for local use.
