@@ -1,3 +1,10 @@
+This module is based on the work at [https://github.com/Travelport-Ukraine/npm-module-boilerplate.git](https://github.com/Travelport-Ukraine/npm-module-boilerplate.git).
+Two remote repositories are kept:
+
+- origin: the original one for updating/fixing purposes (DO ONLY PULLS), and 
+- yotako: the one we use.
+
+
 # Why? [![Build Status](https://travis-ci.org/.../yotako-....svg?branch=master)](https://travis-ci.org/.../yotako-...)
 :page_with_curl: Boilerplate for npm/node module. Write with ES6 - have compatibility with all node versions.
 
