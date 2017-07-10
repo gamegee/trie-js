@@ -1,1 +1,6 @@
-export default function awesomeFunction(a, b) { return a + b; }
+
+let hello = function () {
+	console.log('hello');
+}
+
+module.exports = hello;

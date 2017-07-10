@@ -1,8 +1,8 @@
 {
   "parser": "babel-eslint",
   "plugins": ["node"],
-  "extends": ["airbnb", "eslint:recommended"],
-  "rules": {
-  	"jsx-a11y/href-no-hash": "off"
-  }
+    "extends": ["eslint:recommended", "plugin:node/recommended"],
+    "rules": {
+        "node/exports-style": ["error", "module.exports"],
+    }
 }
