@@ -1,19 +1,21 @@
 {
-  "parser": "babel-eslint",
-  "plugins": ["node"],
-	"parserOptions": {
-	    "sourceType": "module",
-        	"ecmaFeatures": {
-	            "modules": true,
-         	    "spread" : true,
-         	    "restParams" : true
-        	}
-	},
-	"env" : {
-	    "browser" : true,
-	    "node" : true,
-	    "es6" : true,
-	    "mocha": true
-	},
-  "extends": ["eslint:recommended", "plugin:import/errors"]
+    "parser": "babel-eslint",
+    "plugins": ["node"],
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "modules": true,
+            "spread" : true,
+            "restParams" : true
+        }
+    },
+    "env" : {
+        "node" : true,
+        "es6" : true,
+        "mocha": true
+    },
+    "extends": ["eslint:recommended", "plugin:import/errors"],
+    "rules": {
+        "node/exports-style": ["error", "module.exports"],
+    }
 }
