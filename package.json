@@ -6,7 +6,7 @@
     "private": true,
     "scripts": {
         "clean": "rimraf lib",
-        "test": "cross-env BABEL_ENV=commonjs mocha --compilers js:babel-register --recursive",
+        "test": "cross-env BABEL_ENV=commonjs mocha --compilers js:babel-register ./src/*.spec.js ./src/**/*.spec.js",
         "test:watch": "npm test -- --watch",
         "test:examples": "node examples/",
         "cover": "cross-env BABEL_ENV=commonjs istanbul cover _mocha -- --compilers js:babel-register --recursive",
@@ -51,5 +51,9 @@
         "istanbul": "^1.0.0-alpha",
         "mocha": "^3.4.2",
         "rimraf": "^2.6.1"
+    },
+    "dependencies": {
+        "lodash": "^4.17.4",
+        "sinon": "^3.0.0"
     }
 }
