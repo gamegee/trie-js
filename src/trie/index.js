@@ -1,4 +1,4 @@
 'use strict';
 
 
-module.exports = require('./node.js');
+module.exports = require('./trie.js');
