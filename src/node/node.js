@@ -4,104 +4,95 @@
 const _ = require('lodash');
 
 
-/**
- * [exports description]
- * @param  {Object} opts [description]
- * @return {[type]}      [description]
- */
-const Node = function Node(value) {
-
-    this.value = value || null;
-    this._childNodes = {};
-}
+class Node {
 
 
-/**
- * [addChildNode description]
- */
-Node.prototype.addChildNode = function(char, node) {
-
-    let isString = _.isString(char);
-    let isLenghtValid = char.length === 1;
-
-    if (!isString || !isLenghtValid) {
-        throw new Error('char property should be a string of length 1.')
+    constructor(value) {
+        this.value = value || null;
+        this._children = {};
     }
 
-    if (!(node instanceof Node)) {
-        throw new Error('childNode property can either be null or a Node instance.')
+
+    /**
+     * [addChild description]
+     */
+    addChild(char, node) {
+
+        let isString = _.isString(char);
+        let isLenghtValid = char.length === 1;
+
+        if (!isString || !isLenghtValid) {
+            throw new Error('char property should be a string of length 1.')
+        }
+
+        if (!(node instanceof Node)) {
+            throw new Error('childNode property can either be null or a Node instance.')
+        }
+
+        return this._children[char] = new Node(node.value);
     }
 
-    return this._childNodes[char] = node;
-}
+
+    /**
+     * [hasChild description]
+     * @param  {[type]}  char [description]
+     * @return {Boolean}      [description]
+     */
+    hasChild(char) {
+        return (char && this._children[char.toLowerCase()] !== undefined);
+    }
 
 
-/**
- * [hasChildNode description]
- * @param  {[type]}  char [description]
- * @return {Boolean}      [description]
- */
-Node.prototype.hasChildNode = function(char) {
-    return (char && this._childNodes[char.toLowerCase()] !== undefined);
-}
+    /**
+     * [hasChild description]
+     * @param  {[type]}  char [description]
+     * @return {Boolean}      [description]
+     */
+    isEmpty(char) {
+        return !(_.keys(this._children).length > 0);
+    }
 
 
-/**
- * [hasChildNode description]
- * @param  {[type]}  char [description]
- * @return {Boolean}      [description]
- */
-Node.prototype.hasChildNodes = function(char) {
-    return (_.keys(this._childNodes).length > 0);
-}
 
 
-/**
- * [getChildNode description]
- * @return {[type]} [description]
- */
-Node.prototype.getChildNodes = function() {
-    return this._childNodes;
-};
+    /**
+     * [getChild description]
+     * @return {[type]} [description]
+     */
+    getChild(char) {
+        return this._children[char];
+    };
 
 
-/**
- * [getChildNode description]
- * @return {[type]} [description]
- */
-Node.prototype.getChildNode = function(char) {
-    return this._childNodes[char];
-};
+    /**
+     * [getChild description]
+     * @return {[type]} [description]
+     */
+    getChildren() {
+        return this._children;
+    };
 
 
-/**
- * [getChildNode description]
- * @return {[type]} [description]
- */
-Node.prototype.getChildNodesArray = function() {
-    return _.map(this._childNodes, (item, key) => ({ char: key, node: item }));
-};
+    /**
+     * [getChild description]
+     * @return {[type]} [description]
+     */
+    isNull() {
+        return this.value === null;
+    };
 
 
-/**
- * [getChildNode description]
- * @return {[type]} [description]
- */
-Node.prototype.isNull = function() {
-    return this.value === null;
-};
-
-
-/**
- * [getValue description]
- * @return {[type]} [description]
- */
-Node.prototype.getValue = function() {
-	return this.value;
+    /**
+     * [getValue description]
+     * @return {[type]} [description]
+     */
+    getValue() {
+        return this.value;
+    }
 }
 
 
 module.exports = Node;
-module.exports.create = function(value) {
+module.exports.create = function (value) {
     return new Node(value);
 }
