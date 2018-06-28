@@ -6,15 +6,15 @@ const expect = chai.expect;
 const Trie = require('./trie.js');
 
 
-describe('trie', function () {
+describe('trie', function() {
 
 
     describe('constructor', () => {
 
         it('Create a trie should initialize default values', () => {
             let trie = new Trie();
-            expect(trie._root).to.be.an.instanceof(trie._node);
-            expect(trie._root.value).to.equal(null);
+            expect(trie._children).to.be.an.instanceof(trie._node);
+            expect(trie._children.value).to.equal(null);
         });
     });
 
@@ -40,7 +40,7 @@ describe('trie', function () {
             let trie = new Trie();
             trie.add('hell', 40);
             trie.add('hello', 55);
-            expect(Object.keys(trie._root.getChildren()).length).to.equal(1);
+            expect(Object.keys(trie._children.getChildren()).length).to.equal(1);
         });
 
 
@@ -48,7 +48,7 @@ describe('trie', function () {
             let trie = new Trie();
             trie.add('hell', 40);
             trie.add('hello', 55);
-            expect(Object.keys(trie._root.getChildren()).length).to.equal(1);
+            expect(Object.keys(trie._children.getChildren()).length).to.equal(1);
         });
 
 
@@ -56,8 +56,9 @@ describe('trie', function () {
             let trie = new Trie();
             trie.add('hell', 40);
             trie.add('hello', 55);
-            expect(trie._root.getChild('h').value).to.equal(null);
-            expect(trie._root.getChild('h').getChild('e').getChild('l').getChild('l').value).to.equal(40);
+            expect(trie._children.getChild('h').value).to.equal(null);
+            expect(trie._children.getChild('h').getChild('e').getChild('l').getChild('l').value).to.equal(40);
+
         });
     });
 
@@ -117,7 +118,7 @@ describe('trie', function () {
 
 
     describe('getFrom', () => {
-        
+
         it('[getFrom] should return all added words from specific root node', () => {
             let trie = new Trie();
             trie.add('hey', 40);
@@ -141,6 +142,28 @@ describe('trie', function () {
             trie.add('hellofood', 100);
             let res = trie.getFrom('hell');
             expect(res.length).to.equal(3);
+        });
+    });
+
+
+    describe('serialize and deserialize', () => {
+
+        it('[serialize] should return a raw JS Object representing the trie structure', () => {
+            let trie = new Trie();
+            trie.add('hey', 40);
+            trie.add('help', 40);
+            let serialized = trie.serialize();
+            expect(Object.keys(serialized._children).length).to.equal(2);
+            expect(serialized.getAll).to.equal(undefined);
+        });
+
+        it('[deserialize] should return valid data', () => {
+            let trie = new Trie();
+            trie.add('hey', 40);
+            trie.add('help', 40);
+            let serialized = trie.serialize();
+            let newTrie = new Trie(serialized);
+            expect(newTrie.getAll().length).to.equal(2);
         });
     });
 });

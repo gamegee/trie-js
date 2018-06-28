@@ -1,4 +1,4 @@
-'use strict';
+-'use strict';
 
 
 const _ = require('lodash');
@@ -7,15 +7,17 @@ const Node = require('../node');
 
 class Trie {
 
-    constructor() {
+    constructor(opts = {}) {
         this._node = Node;
-        this._root = this._node.create();
+        this._isRoot = true;
+        this._children = this._node.create(opts._children || {});
     }
 
 
     /**
-     * @param {String} str
-     * @param {String} value
+     * Add a new word in the trie
+     * @param {String} word - word to add to the trie
+     * @param {String} value - You can add specific value to each added node
      */
     add(str, opts) {
         let parsedString = this._parseString(str);
@@ -28,15 +30,16 @@ class Trie {
             let value = isLast ? opts : null;
             return childNodeExist ?
                 childNode :
-                currentNode.addChild(char, this._node.create(value));
-        }, this._root);
+                currentNode.addChild(char, this._node.create({ value }));
+        }, this._children);
     }
 
 
 
     /**
-     * @param  {String} str
-     * @return {Object} Node
+     * Get node from a specific word in the trie
+     * @param  {String} word - required
+     * @return {Object|null} node or null if the word doesn't exist
      */
     get(str) {
         let parsedString = this._parseString(str);
@@ -63,13 +66,15 @@ class Trie {
             }
 
             return childNode;
-        }, this._root);
+        }, this._children);
     }
 
 
     /**
-     * [getAllSubNodes description]
-     * @return {[type]} [description]
+     * Search words that start with specific string subset
+     * @param {String} startString - required
+     * @param {*} opts - optional
+     * @returns {Array} Array of words
      */
     getFrom(startString = null, opts = {}) {
 
@@ -84,15 +89,21 @@ class Trie {
 
 
     /**
-     * [getAllSubNodes description]
-     * @return {[type]} [description]
+     * Get words count that start with specific string subset
+     * @return {Number} Number of words
      */
     getCountFrom(startString = null, opts = {}) {
         return this.getFrom(startString, opts).length;
     }
 
 
-    getAll(node = this._root, prevStr = '', opts = {}) {
+    /**
+     * 
+     * @param {*} node 
+     * @param {*} prevStr 
+     * @param {*} opts 
+     */
+    getAll(node = this._children, prevStr = '', opts = {}) {
         return _.reduce(node.getChildren(), (acc, item, key) => {
 
             let currentStr = `${prevStr}${key}`;
@@ -108,14 +119,20 @@ class Trie {
     }
 
 
+
     getCount() {
         return this.getAll().length;
     }
 
 
+    serialize() {
+        return JSON.parse(JSON.stringify(this));
+    }
+
+
     /**
-     * @param  {[type]} str [description]
-     * @return {[type]}     [description]
+     * @param  {String} str 
+     * @return {String}     
      */
     _parseString(str) {
         if (!_.isString(str)) {

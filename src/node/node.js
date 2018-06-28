@@ -7,9 +7,13 @@ const _ = require('lodash');
 class Node {
 
 
-    constructor(value) {
-        this.value = value || null;
+    constructor(opts = {}) {
+        this.value = opts.value || null;
         this._children = {};
+
+        _.forEach(opts._children, (node, char) => {
+            this.addChild(char, node)
+        });
     }
 
 
@@ -25,11 +29,7 @@ class Node {
             throw new Error('char property should be a string of length 1.')
         }
 
-        if (!(node instanceof Node)) {
-            throw new Error('childNode property can either be null or a Node instance.')
-        }
-
-        return this._children[char] = new Node(node.value);
+        return this._children[char] = new Node(node);
     }
 
 
@@ -93,6 +93,6 @@ class Node {
 
 
 module.exports = Node;
-module.exports.create = function (value) {
-    return new Node(value);
+module.exports.create = function(opts) {
+    return new Node(opts);
 }

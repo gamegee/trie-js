@@ -15,7 +15,7 @@ describe('node', function () {
 
 
     it('Create a node should initialize default values', () => {
-        let node = new Node(55);
+        let node = new Node({value: 55});
         expect(node.value).to.equal(55);
     });
 
@@ -108,7 +108,7 @@ describe('node', function () {
 
 
     it('[isNull] should return false if node has a value defined', () => {
-        let node1 = new Node(1);
+        let node1 = new Node({value: 1});
         expect(node1.isNull()).to.equal(false);
     });
 });
