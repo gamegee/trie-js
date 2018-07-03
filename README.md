@@ -5,8 +5,8 @@
 
 ```
 let trie = Trie.create();
-trie.add('hello');
-trie.add('hey');
+trie.add('hello', 10);
+trie.add('hey', 25);
 ```
 
  ### Get a word node  
@@ -14,7 +14,7 @@ trie.add('hey');
 ```
 let trie = Trie.create();
 trie.add('hello');
-trie.get('hello'); // {value: ..., _children: {...}}
+trie.get('hello'); // {value: 10, _children: {...}}
 trie.get('hell'); // null
 ```
 
