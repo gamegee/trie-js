@@ -57,7 +57,6 @@ class Trie {
         let charArray = str.split('');
         return charArray.reduce((currentNode, char, idx, arr) => {
             let childNode = currentNode.getChild(char);
-            let isLast = (idx === charArray.length - 1);
 
             if (!childNode) {
                 // Stop iteration by mutating the charArray

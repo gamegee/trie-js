@@ -48,7 +48,7 @@ class Node {
      * @param  {[type]}  char [description]
      * @return {Boolean}      [description]
      */
-    isEmpty(char) {
+    isEmpty() {
         return !(_.keys(this._children).length > 0);
     }
 
@@ -61,7 +61,7 @@ class Node {
      */
     getChild(char) {
         return this._children[char];
-    };
+    }
 
 
     /**
@@ -70,7 +70,7 @@ class Node {
      */
     getChildren() {
         return this._children;
-    };
+    }
 
 
     /**
@@ -79,7 +79,7 @@ class Node {
      */
     isNull() {
         return this.value === null;
-    };
+    }
 
 
     /**
