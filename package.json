@@ -1,5 +1,5 @@
 {
-    "name": "yotako-...",
+    "name": "gamegee-...",
     "version": "1.0.0",
     "description": "...",
     "main": "./lib/index.js",
@@ -20,23 +20,23 @@
     ],
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/Yotakoio/yotako-...git"
+        "url": "git+https://github.com/gamegeeio/gamegee-...git"
     },
     "engines": {
         "node": ">=7.10.0"
     },
     "keywords": [
-        "Yotako",
+        "gamegee",
         "module",
         "node",
         "javascript"
     ],
-    "author": "Alfonso García Frey <alfonsno@yotako.io>",
+    "author": "Alfonso García Frey <alfonsno@gamegee.io>",
     "license": "GPL-3.0",
     "bugs": {
-        "url": "https://git.yotako.io/Yotakoio/yotako-.../issues"
+        "url": "https://git.gamegee.io/gamegeeio/gamegee-.../issues"
     },
-    "homepage": "https://git.yotako.io/Yotakoio/yotako-...#readme",
+    "homepage": "https://git.gamegee.io/gamegeeio/gamegee-...#readme",
     "devDependencies": {
         "babel-cli": "^6.24.1",
         "babel-eslint": "^7.2.3",
