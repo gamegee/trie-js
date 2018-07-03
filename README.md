@@ -1,6 +1,7 @@
 # Get started
 
-### Add a word
+
+ ### Add a word  
 
 ```
 let trie = Trie.create();
@@ -8,7 +9,7 @@ trie.add('hello');
 trie.add('hey');
 ```
 
-### Get a word node
+ ### Get a word node  
 
 ```
 let trie = Trie.create();
@@ -17,7 +18,8 @@ trie.get('hello'); // {value: ..., _children: {...}}
 trie.get('hell'); // null
 ```
 
-### Get all words
+
+  ### Get all words  
 
 ```
 let trie = Trie.create();
@@ -27,7 +29,7 @@ trie.add('help');
 trie.getAll(); // ['hello', 'hey', 'help']
 ```
 
-### Get words from string prefix
+ ### Get words from string prefix  
 
 ```
 let trie = Trie.create();
@@ -38,7 +40,7 @@ trie.getFrom('he'); // ['hello', 'hey', 'help']
 trie.getFrom('hel'); // ['hello', 'help']
 ```
 
-### Get words count
+ ### Get words count  
 
 ```
 let trie = Trie.create();
@@ -48,7 +50,7 @@ trie.add('help');
 trie.getCount(); // 3
 ```
 
-### Get words count from string prefix
+ ### Get words count from string prefix  
 
 ```
 let trie = Trie.create();
